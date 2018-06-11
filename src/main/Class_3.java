@@ -3,6 +3,7 @@ package main;
 import java.util.Random;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,74 +13,73 @@ public class Class_3 {
 	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "/Users/oleksandrostapchuk/Desktop/SELENIUM/chromedriver");
 		WebDriver d = new ChromeDriver();
-		d.get("https://cybertek-bnb.herokuapp.com/");
-		System.out.println("URL is : " + d.getCurrentUrl());
-		System.out.println(d.getCurrentUrl());
-		String t = d.getTitle();
-		System.out.println("Title is : " + t);
-		if (t.equals("Intro | cybertek-bnb")) {
-			System.out.println("Intro | cybertek-bnb");
-		} else {
-			System.out.println("Title - Failing");
-		}
-		Random random = new Random();
-		int r = random.nextInt(1000000);
-		String fN = "Marrio";
-		String lN = "Brunny";
-		String email = "mario" + r + "B@yahoo.com";
-		String password = "Qwerty123";
-
-		d.findElement(By.linkText("sign up")).click();
+		d.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
+		d.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester");
+		d.findElement(By.name("ctl00$MainContent$password")).sendKeys("test");
+		d.findElement(By.id("ctl00_MainContent_login_button")).click();
+		d.findElement(By.cssSelector("#ctl00_menu > li:nth-child(3) > a")).click();
 		
-		WebElement fName = d.findElement(By.name("first-name"));
-		fName.sendKeys(fN);
-		Thread.sleep(1000);
-		fName.clear();
-		Thread.sleep(1000);
-		d.findElement(By.name("first-name")).click();
-		d.findElement(By.name("first-name")).sendKeys(fN);
-
-		WebElement lName = d.findElement(By.name("last-name"));
-		lName.sendKeys(lN);
-		Thread.sleep(1000);
-		lName.clear();
-		Thread.sleep(1000);
-		d.findElement(By.name("last-name")).click();
-		d.findElement(By.name("last-name")).sendKeys(lN);
+		Random r = new Random();
+		int i = r.nextInt(101);
+		int i1= r.nextInt(69999);
+		int card = r.nextInt(3);
+		String v="4"+i1+i1+i1;
+		String m="5"+i1+i1+i1;
+		String ae="3"+i1+i1+(i1-1);
+		int ed = r.nextInt(12);
+		int min =19;
+		int max =25;
+		int ed1 = min +r.nextInt(max);
+		String slash="";
 		
-		WebElement eMail = d.findElement(By.name("email"));
-		eMail.sendKeys(email);
-		Thread.sleep(1000);
-		eMail.clear();
-		Thread.sleep(1000);
-		d.findElement(By.name("email")).sendKeys(email);
-
 		
-		WebElement psw = d.findElement(By.name("password"));
-		psw.sendKeys(password);
-		Thread.sleep(1000);
-		psw.clear();
-		Thread.sleep(1000);
-		d.findElement(By.name("password")).sendKeys(password);
-		d.findElement(By.xpath("//button[.='sign up']")).click();
-		if (d.getTitle().equals("Intro | cybertek-bnb")) {
-			System.out.println("Sign in is : correct");
-		} else {
-			System.out.println("Sign in FAILED");
+		if(ed<10) {
+			slash = "0"+ed+"/"+ed1;
+			
+		}else {
+			 slash = ""+ed+"/"+ed1;
+			
 		}
-		d.findElement(By.name("email")).sendKeys(email);
-		d.findElement(By.name("password")).sendKeys(password);
-		d.findElement(By.xpath("//button[.='sign in']")).click();
+		
+		char midName = (char)(r.nextInt(26)+65);
+		Thread.sleep(3000);
+		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(Keys.BACK_SPACE);
+		Thread.sleep(3000);
+		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(""+i);
+		Thread.sleep(3000);
+		
+		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtName")).sendKeys("John "+midName+" Smith");
+		d.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder_TextBox2\"]")).sendKeys("123 Any Street");
+		d.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder_TextBox3\"]")).sendKeys("Chicago");
+		d.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder_TextBox4\"]")).sendKeys("IL");
+		d.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder_TextBox5\"]")).sendKeys(""+i1);
+		
+			if(card==0) {
+				d.findElement(By.xpath("//input[@id='ctl00_MainContent_fmwOrder_cardList_0']")).click();
+				d.findElement(By.xpath("//*[@id='ctl00_MainContent_fmwOrder_TextBox6']")).sendKeys(v);
 
-		String loggenInTitle = d.getTitle();
-		if (loggenInTitle.equals("Map | cybertek-bnb")) {
-			System.out.println("User signed in - successfully");
-		} else {
-			System.out.println("User signed in - fail");
-		}
-		Thread.sleep(5000);
+			}else if(card==1) {
+				d.findElement(By.xpath("//input[@id='ctl00_MainContent_fmwOrder_cardList_1']")).click();
+				d.findElement(By.xpath("//*[@id='ctl00_MainContent_fmwOrder_TextBox6']")).sendKeys(m);
 
-		d.close();
-	}
+			}else if(card==2) {
+				d.findElement(By.xpath("//input[@id='ctl00_MainContent_fmwOrder_cardList_2']")).click();
+				d.findElement(By.xpath("//*[@id='ctl00_MainContent_fmwOrder_TextBox6']")).sendKeys(ae);
 
-}
+			}else {
+				d.findElement(By.xpath("//input[@id='ctl00_MainContent_fmwOrder_cardList_0']")).click();
+				d.findElement(By.xpath("//*[@id='ctl00_MainContent_fmwOrder_TextBox6']")).sendKeys(v);
+
+			}
+		
+					
+			d.findElement(By.xpath("//*[@id=\'ctl00_MainContent_fmwOrder_TextBox1\']")).sendKeys(slash);
+			d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_InsertButton")).click();
+		
+		
+		
+//		Thread.sleep(6000);
+//		d.close();
+		
+		
+	}}
