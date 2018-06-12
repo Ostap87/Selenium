@@ -43,7 +43,6 @@ public class Order {
 		char midName = (char) (r.nextInt(26) + 65);
 		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys(Keys.BACK_SPACE);
 		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtQuantity")).sendKeys("" + i);
-		
 
 		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_txtName")).sendKeys("John " + midName + " Smith");
 		d.findElement(By.xpath("//*[@id=\"ctl00_MainContent_fmwOrder_TextBox2\"]")).sendKeys("123 Any Street");
@@ -72,15 +71,16 @@ public class Order {
 		d.findElement(By.xpath("//*[@id=\'ctl00_MainContent_fmwOrder_TextBox1\']")).sendKeys(slash);
 		d.findElement(By.cssSelector("#ctl00_MainContent_fmwOrder_InsertButton")).click();
 
-		String str5 = d.findElement(By.xpath("//*[@id=\'ctl00_MainContent_fmwOrder\']/tbody/tr/td/div/strong")).getText();
-if(str5.contains("New order has been successfully added."))	{
-	System.out.println("Pass");
-}else {
-	System.out.println("Fail");
-}
-		
+		String str5 = d.findElement(By.xpath("//*[@id=\'ctl00_MainContent_fmwOrder\']/tbody/tr/td/div/strong"))
+				.getText();
+		if (str5.contains("New order has been successfully added.")) {
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
+		}
+
 		Thread.sleep(6000);
-	//	d.close();
+		d.close();
 
 	}
 }
